@@ -1,27 +1,48 @@
-# Pacman Agent
+# Pacman Capture the Flag agent
 
-A template for coding a pacman agent.
+Our team for the Autonomous Systems (EMAI, UPF) Pacman Contest. The whole agent is in
+[`my_team.py`](my_team.py): two `FlexAgent`s sharing one `TeamBrain`, an attacker and a
+defender that adapt their role to the score, the time left and the opponents.
+
+- **Opponent tracking**: a position belief per opponent from sonar, visibility, eaten
+  food and side of the board.
+- **Time-aware safe search**: cells are used only if we reach them before any dangerous
+  ghost; dead-end corridors only if we can leave them in time.
+- **Priority rules per role**: go home, capsules, scared ghosts and food for the
+  attacker; chase, block, mark, raid and guard for the defender.
+- **Stable decisions**: remembered ghosts, sticky targets and border marking, so that
+  the agents do not oscillate.
+
+See [STRATEGY.md](STRATEGY.md) for the full design, the parameters and local results.
+Team details are in [TEAM.md](TEAM.md).
 
 ## Setting up the environment
-1. Copy the code from this framework to create your Pacman Agent.
-2. Clone your own pacman-agent repository (e.g., `git clone git@github.com:Username/pacman-agent.git`)
-3. Go into pacman-agent folder, `cd pacman-agent/`
-4. Run `git submodule update --init --remote` to pull the last pacman-contest
-5. Create a virtual environment (e.g., `python3.8 -m venv venv`)
-6. Activate the virtual environment with `source venv/bin/activate`
-7. Go to the pacman-contest folder and install the requirements:
+
+1. Clone this repository and go into it.
+2. Pull the contest framework: `git submodule update --init --remote`, or clone
+   [pacman-contest](https://github.com/AI4EDUC/pacman-contest-cluster) into `pacman-contest/`.
+3. Create and activate a virtual environment: `python3.8 -m venv venv`, then
+   `source venv/bin/activate`.
+4. Install the framework:
     - `cd pacman-contest/`
     - `pip install -r requirements.txt`
     - `pip install -e .`
 
-## Coding a new agent
-In the root folder do the following:
-1. Create in `my_team.py` a class with the name of your agent that inherits from `CaptureAgent`, e.g. `class ReflexCaptureAgent(CaptureAgent):`
-2. In the new class, override the `def choose_action(self, game_state):` function to return the best next action (check the given source code example).
-3. (Optional) Add any other functions to the class for reasoning / learning and improving your agents decision which could also use other code sources in the same folder.
+## Running a game
 
-To debug the agent you can run `capture.py` between the `baseline_team` and your current agent:
-1. `cd pacman-contest/src/contest/`
-2. `python capture.py -r baseline_team -b ../../../my_team.py`
+From `pacman-contest/src/contest/`:
 
+```bash
+# against the baseline team, with graphics
+python capture.py -r ../../../my_team.py -b baseline_team
 
+# on a random layout, without graphics
+python capture.py -r ../../../my_team.py -b baseline_team -l RANDOM42 -q
+
+# record a game and replay it
+python capture.py -r ../../../my_team.py -b baseline_team --record
+python capture.py --replay=www/contest_default/replays/match_0.replay
+```
+
+Set `DEBUG = True` at the top of `my_team.py` to see exceptions instead of the random
+fallback move.
