@@ -1,19 +1,14 @@
 # Team Information
 
-**Course:** _[fill your course code and name]_
+**Course:** Autonomous Systems – EMAI 2026-27
 
-**Semester:** Semester 2, 2020
+**Semester:** Fall/Winter 2026 (Semester 1, 2026-27)
 
-**Instructor:** _[name of your instructor]_
+**Instructor:** Javier Segovia-Aguas
 
-**Team name:** _[replace this with team name in plan text]_
+**Team name:** GhostBusters
 
 **Team members:**
 
-* Student 1's Student number - Full Name - Student email - Student Github id
-* Student 2's Student number - Full Name - Student email - Student Github id
-* Student 3's Student number - Full Name - Student email - Student Github id
-
-Replace the lines above with the correct details of members. Delete or add lines as needed.
-
-Student numbers should just be the **numbers**.
+* 283332 - Luigi Moretti - luigimoretti2003@gmail.com - Luigi-Moretti-SE
+* 283348 - Andrea Molteni - andreamolteni70@gmail.com - molte38
